@@ -1,0 +1,3 @@
+import fastmake
+
+fastmake.run()
