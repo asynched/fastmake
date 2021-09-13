@@ -31,7 +31,7 @@ $ fastmake -t src -e my_app.exe
 1. Clone this repository
 
 ```sh
-$ git clone $url
+$ git clone https://github.com/Nxrth-x/fastmake
 ```
 
 2. Add an alias
