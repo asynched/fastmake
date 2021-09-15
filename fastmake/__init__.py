@@ -1,6 +1,5 @@
 import os, sys
 from pathlib import Path
-from typing import Type
 from fastmake.utils.files import get_source_files_list
 from fastmake.utils.cli import parse_cli_arguments, show_cli_options
 from fastmake.utils.logger import Logger
@@ -29,12 +28,13 @@ def execute(
     compiler: str = 'gcc',
     flags: str = 'ENABLED',
     executable: str = 'main',
+    filetype: str = 'c',
     show_build_command=False,
 ):
 
     SOURCE_FILES_PATH = ROOT_PATH / Path(target)
 
-    source_files, header_files = get_source_files_list(str(SOURCE_FILES_PATH))
+    source_files, header_files = get_source_files_list(str(SOURCE_FILES_PATH), filetype)
 
     source_files = " ".join(source_files)
     header_files = " ".join(header_files)
@@ -66,9 +66,12 @@ def run():
 
     parsed_arguments = parse_cli_arguments(args)
 
+    print(parsed_arguments)
+
     try:
         execute(**parsed_arguments)
     except TypeError as error:
+        print(error)
         Logger.error(
             "Please provide a target folder\n" "$ fastmake -t $YOUR_PROGRAM_FOLDER\n"
         )

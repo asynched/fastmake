@@ -1,5 +1,5 @@
 from fastmake.utils.logger import Logger
-from fastmake.utils.colors import Colors as Colors
+from fastmake.utils.colors import Colors
 
 
 def parse_cli_arguments(args: list) -> dict:
@@ -9,6 +9,7 @@ def parse_cli_arguments(args: list) -> dict:
         'f': 'flags',
         'e': 'executable',
         'h': 'help',
+        'ft': 'filetype',
     }
 
     options = {}
@@ -40,31 +41,31 @@ def show_cli_options():
     Logger.base(
         Colors.BG_YELLOW,
         "TARGET",
-        "Root folder of your project (where all you're files are stored)\n"
-        "> Flag: -t\n"
-        "> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER\n",
+        "Root folder of your project (where all your files are stored)\n"
+        "-> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER\n"
+        "-> Flag: -t\n",
     )
 
     Logger.base(
         Colors.BG_GREEN,
         "COMPILER",
         "Chosen compiler to compile your program (optional, defaults to gcc)\n"
-        "> Flag: -c\n"
-        "> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -c gcc # Use the GCC compiler\n",
+        "-> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -c gcc # Use the GCC compiler\n"
+        "-> Flag: -c\n",
     )
 
     Logger.base(
         Colors.BG_GREEN,
         "FLAGS",
-        "Add additional flags to the build command (optional, defaults to ENABLED)\n",
-        "> Flag: -f\n"
-        "> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -f -- # Disables the additional flags\n",
+        "Add additional flags to the build command (optional, defaults to ENABLED)\n"
+        "-> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -f -- # Disables the additional flags\n"
+        "-> Flag: -f\n",
     )
 
     Logger.base(
         Colors.BG_GREEN,
         "EXECUTABLE",
         "Add a name to your generated executable (optional, defaults to 'main')\n"
-        "> Flag: -e\n"
-        "> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -e my_program.exe # Renames the executable to 'my_program.exe'",
+        "-> Example: $ fastmake -t $YOUR_PROGRAM_FOLDER -e my_program.exe # Renames the executable to 'my_program.exe'\n"
+        "-> Flag: -e\n",
     )
