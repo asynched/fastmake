@@ -40,7 +40,9 @@ def get_raw_source_files(
     )
 
     for directory in directories:
-        get_raw_source_files(source_dir + '/' + directory, source_files, header_files)
+        get_raw_source_files(
+            source_dir + '/' + directory, source_files, header_files, filetype
+        )
 
 
 def get_source_files_list(source_dir: str, filetype: str) -> tuple:
@@ -51,7 +53,7 @@ def get_source_files_list(source_dir: str, filetype: str) -> tuple:
         source_dir,
         source_files,
         header_files,
-        'c',
+        filetype=filetype,
     )
 
     source_files = flat(source_files)

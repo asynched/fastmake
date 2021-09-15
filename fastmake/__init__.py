@@ -20,7 +20,7 @@ def generate_build_command(
     if flags == 'ENABLED':
         compiler_flags += ' '.join(['-w', '-Wall', '-ansi', '-pedantic'])
 
-    return f"{compiler} {source_files} {header_files} {compiler_flags} -o {executable}"
+    return f'{compiler} {source_files} {header_files} {compiler_flags} -o {executable}'
 
 
 def execute(
@@ -31,13 +31,12 @@ def execute(
     filetype: str = 'c',
     show_build_command=False,
 ):
-
     SOURCE_FILES_PATH = ROOT_PATH / Path(target)
 
     source_files, header_files = get_source_files_list(str(SOURCE_FILES_PATH), filetype)
 
-    source_files = " ".join(source_files)
-    header_files = " ".join(header_files)
+    source_files = ' '.join(source_files)
+    header_files = ' '.join(header_files)
 
     build_command = generate_build_command(
         compiler,
@@ -52,9 +51,14 @@ def execute(
     if show_build_command:
         print(build_command)
 
-    Logger.info(f"Generating executable '{executable}'")
-    os.system(build_command)
-    Logger.success("Build succeeded")
+    Logger.info(f'Generating executable "{executable}"')
+    error = os.system(build_command)
+
+    if error:
+        Logger.error('Build failed')
+        return
+
+    Logger.success('Build succeeded')
 
 
 def run():
@@ -66,15 +70,12 @@ def run():
 
     parsed_arguments = parse_cli_arguments(args)
 
-    print(parsed_arguments)
-
     try:
         execute(**parsed_arguments)
     except TypeError as error:
         print(error)
         Logger.error(
-            "Please provide a target folder\n" "$ fastmake -t $YOUR_PROGRAM_FOLDER\n"
+            'Please provide a target folder\n' '$ fastmake -t $YOUR_PROGRAM_FOLDER\n'
         )
     except Exception as error:
-        print(type(error))
-        print(error)
+        Logger.error('Error:', error)
