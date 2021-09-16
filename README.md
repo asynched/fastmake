@@ -24,6 +24,7 @@ $ fastmake -t src -e my_app.exe
 | [COMPILER] -c   | Chosen compiler to compile your program (optional, defaults to gcc)       |
 | [FLAGS] -f      | Add additional flags to the build command (optional, defaults to ENABLED) |
 | [EXECUTABLE] -e | Add a name to your generated executable (optional, defaults to 'main')    |
+| [FILE TYPE] -ft | Add a filetype as a default to generate the executable (defaults to .c)   |
 | [HELP] -h       | Terminal helper with examples                                             |
 
 ### Want to try it out? 🧪
